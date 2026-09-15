@@ -1,0 +1,17 @@
+services:
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      # Telegram Benachrichtigung
+      DOCKER_API_VERSION: "1.40"
+      WATCHTOWER_NOTIFICATIONS: "shoutrrr"
+      WATCHTOWER_NOTIFICATION_URL: "telegram://8828167709:AAE1fIU0ZMQ-6RYr3uUj_bqoobzbuPwrA8c@telegram?channels=337139085"
+      WATCHTOWER_CLEANUP: "true"
+      WATCHTOWER_SCHEDULE: "0 0 4 * * 0-5"
+      # WATCHTOWER_SCHEDULE: "0 0 4 * * *"
+      WATCHTOWER_REVIVE_STOPPED: "false"    # Verhindert Verhakungen mit gestoppten Containern
+      WATCHTOWER_LOG_LEVEL: "debug"

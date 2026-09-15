@@ -1,0 +1,36 @@
+# ==========================================
+# Secrets & Umgebungsvariablen
+# ==========================================
+*.env
+*.env.*
+!.env.example
+!.env.template
+*.secret
+*.key
+*.pem
+
+# ==========================================
+# Uptime Kuma (SQLite DB, Socket & Runtime Data)
+# ==========================================
+uptime-kuma/data/*
+!uptime-kuma/data/.gitkeep
+
+# ==========================================
+# Pangolin (Config-Daten & Zertifikate/Keys)
+# ==========================================
+# Ignoriert generierte Zertifikate, Keys & Datenbanken im Config-Ordner
+pangolin/config/*
+!pangolin/config/.gitkeep
+
+# Falls im installer Ordner temporäre Binaries oder State-Files liegen
+pangolin/installer/tmp/
+pangolin/installer/*.log
+
+# ==========================================
+# Logs & System-Cache
+# ==========================================
+*.log
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+.DS_Store
