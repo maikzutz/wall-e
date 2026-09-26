@@ -1,0 +1,21 @@
+name: immich-proxy
+
+services:
+  immich-public-proxy:
+    image: alangrainger/immich-public-proxy:latest
+    container_name: immich-public-proxy
+    restart: unless-stopped
+    environment:
+      # Die interne Immich-URL, wie sie vom VPS aus erreichbar ist (z. B. über den Pangolin-Tunnel)
+      - PUBLIC_BASE_URL=https://bilder.zutz.de
+      - IMMICH_URL=https://immich.home.zutz.de
+    networks:
+      - pangolin_frontend
+    healthcheck:
+      test: curl -s http://localhost:3000/share/healthcheck -o /dev/null || exit 1
+      start_period: 10s
+      timeout: 5s
+
+networks:
+  pangolin_frontend:
+    external: true
